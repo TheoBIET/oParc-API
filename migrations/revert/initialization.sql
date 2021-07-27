@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE "attraction", "visitor", "agent", "incident", "attraction_has_visitors", "attraction_has_incidents";
+DROP TABLE "attraction", "visitor", "agent", "incident", "attraction_has_visitors";
 
 COMMIT;

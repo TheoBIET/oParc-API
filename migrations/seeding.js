@@ -6,43 +6,43 @@ const attractions = [
     {
         name: "La Galère",
         capacity: 30,
-        opening_hour: "08:00:00 Europe/Paris",
-        closing_hour: "18:00:00 Europe/Paris",
+        opening_hour: "08:00:00",
+        closing_hour: "18:00:00",
         duration: '0-0 0 00:02:30'
     },
     {
         name: "Oziris",
         capacity: 26,
-        opening_hour: "18:00 Europe/Paris",
-        closing_hour: "07:00 Europe/Paris",
+        opening_hour: "18:00:00",
+        closing_hour: "07:00:00",
         duration: '0-0 0 00:02:13'
     },
     {
         name: "Tonerre de Zeus",
         capacity: 43,
-        opening_hour: "03:00:00 Europe/Paris",
-        closing_hour: "14:00:00 Europe/Paris",
+        opening_hour: "03:00:00",
+        closing_hour: "14:00:00",
         duration: '0-0 0 00:02:23'
     },
     {
         name: "La Trace du Hourra",
         capacity: 8,
-        opening_hour: "01:00:00 Europe/Paris",
-        closing_hour: "21:00:00 Europe/Paris",
+        opening_hour: "01:00:00",
+        closing_hour: "21:00:00",
         duration: '0-0 0 00:01:18'
     },
     {
         name: "Goudurix",
         capacity: 64,
-        opening_hour: "08:00:00 Europe/Paris",
-        closing_hour: "23:00:00 Europe/Paris",
+        opening_hour: "08:00:00",
+        closing_hour: "23:00:00",
         duration: '0-0 0 00:01:02'
     },
     {
         name: "Spectacle Random",
         capacity: 200,
-        opening_hour: "10:00 Europe/Paris",
-        closing_hour: "12:00 Europe/Paris",
+        opening_hour: "10:00:00",
+        closing_hour: "12:00:00",
         duration: '0-0 0 02:00:00'
     },
 ]
@@ -105,9 +105,9 @@ const insertReservations = () => {
 }
 
 const start = () => {
-    // insertAgents();
+    insertAgents();
     insertAttractions();
-    // insertVisitor();
+    insertVisitor();
 }
 
 start();

@@ -8,7 +8,7 @@ CREATE TABLE "attraction" (
     "capacity" INT NOT NULL,
     "opening_hour" TIME WITH TIME ZONE NOT NULL,
     "closing_hour" TIME WITH TIME ZONE NOT NULL,
-    "duration" INT NOT NULL,
+    "duration" INTERVAL NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
@@ -38,6 +38,7 @@ CREATE TABLE "incident" (
     "type" TEXT NOT NULL,
     "resolution_date" TIMESTAMPTZ,
     "agent_id" INT REFERENCES "agent"("id"),
+    "attraction_id" INT REFERENCES "attraction"("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
@@ -48,13 +49,6 @@ CREATE TABLE "attraction_has_visitors" (
     "visitors_id" INT REFERENCES "visitor"("id"),
     "number_of_places" INT NOT NULL CHECK (number_of_places >= 1 AND number_of_places <= 3),
     "reservation_time" TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-
-CREATE TABLE "attraction_has_incidents" (
-    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "attraction_id" INT REFERENCES "attraction"("id"),
-    "incident_id" INT REFERENCES "incident"("id"),
-    "incident_date" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 COMMIT;

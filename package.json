@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon",
-    "db:install": "sqitch deploy; node ./db/seeding.js",
+    "db:install": "sqitch deploy; node ./migrations/seeding.js",
     "db:reset": "sqitch revert -y; npm run db:install"
   },
   "keywords": [],
