@@ -13,8 +13,8 @@ const attractions = [
     {
         name: "Oziris",
         capacity: 26,
-        opening_hour: "18:00:00 Europe/Paris",
-        closing_hour: "07:00:00 Europe/Paris",
+        opening_hour: "18:00 Europe/Paris",
+        closing_hour: "07:00 Europe/Paris",
         duration: '0-0 0 00:02:13'
     },
     {
@@ -41,25 +41,25 @@ const attractions = [
     {
         name: "Spectacle Random",
         capacity: 200,
-        opening_hour: "10:00:00 Europe/Paris",
-        closing_hour: "12:00:00 Europe/Paris",
+        opening_hour: "10:00 Europe/Paris",
+        closing_hour: "12:00 Europe/Paris",
         duration: '0-0 0 02:00:00'
     },
 ]
 
-const insertAttractions = () => {
+const insertAttractions = async () => {
     for (let i = 0; i < attractions.length; i++) {
 
         const attraction = {
-            last_name: faker.name.lastName(),
-            first_name: faker.name.firstName(),
-            email: faker.internet.email(),
-            password: faker.internet.password(),
-            created_at: faker.date.past()
+            name: attractions[i].name,
+            capacity: attractions[i].capacity,
+            opening_hour: attractions[i].opening_hour,
+            closing_hour: attractions[i].closing_hour,
+            duration: attractions[i].duration,
         }
 
-        await client.query('INSERT INTO "agent" ("last_name", "first_name", "email", "password", "created_at") VALUES ($1, $2, $3, $4, $5)',
-            [agent.last_name, agent.first_name, agent.email, agent.password, agent.created_at]);
+        await client.query('INSERT INTO "attraction" ("name", "capacity", "opening_hour", "closing_hour", "duration") VALUES ($1, $2, $3, $4, $5)',
+            [attraction.name, attraction.capacity, attraction.opening_hour, attraction.closing_hour, attraction.duration]);
 
     }
 }
@@ -99,19 +99,15 @@ const insertVisitor = async () => {
 }
 
 const insertIncident = () => {
-
 }
 
 const insertReservations = () => {
-
 }
 
 const start = () => {
-    insertAgents();
+    // insertAgents();
     insertAttractions();
-    insertVisitor();
-    insertReservations();
-    insertIncident();
+    // insertVisitor();
 }
 
 start();
