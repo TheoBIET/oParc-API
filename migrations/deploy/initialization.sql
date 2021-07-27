@@ -58,5 +58,3 @@ CREATE TABLE "attraction_has_incidents" (
 );
 
 COMMIT;
-
-COMMIT;

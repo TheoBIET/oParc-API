@@ -8,7 +8,7 @@ const {
 } = require('./app/routers');
 
 app.use('/api', apiRouter);
-app.use('/', dashboardRouter);
+app.use('/admin', dashboardRouter);
 
 app.listen(PORT, _ => {
     console.log(`oParc-API listening on port ${PORT}`);
