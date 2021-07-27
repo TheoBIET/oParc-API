@@ -1,5 +1,5 @@
 {
-  "name": "oParc",
+  "name": "oparc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon",
+    "db:install": "sqitch deploy; node ./db/seeding.js",
+    "db:reset": "sqitch revert -y; npm run db:install"
   },
   "keywords": [],
   "author": "",
