@@ -2,9 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    errorController
+    errorController,
+    incidentController,
+    dashboardController
 } = require('../controllers');
 
-router.use(errorController.resourceNotFound);
+
+router
+    .get('/', dashboardController.index)
+    .get('/incident/:id', incidentController.details)
+    .post('/incident/:id', incidentController.updateDetails)
+    .post('/incident/new', incidentController.create)
+    .use(errorController.resourceNotFound);
 
 module.exports = router;

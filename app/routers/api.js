@@ -5,6 +5,11 @@ const {
     errorController
 } = require('../controllers');
 
-router.use(errorController.resourceNotFound);
+router
+    .get('/init', userController.initialization)
+    .get('/bookings', userController.getBookings)
+    .put('/book', userController.book)
+    .get('/events', eventController.getAll)
+    .use(errorController.resourceNotFound);
 
 module.exports = router;
