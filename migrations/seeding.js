@@ -106,4 +106,12 @@ const insertReservations = () => {
 
 }
 
-insertAgents();
+const start = () => {
+    insertAgents();
+    insertAttractions();
+    insertVisitor();
+    insertReservations();
+    insertIncident();
+}
+
+start();
