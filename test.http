@@ -1,2 +1,15 @@
 ### Initialized & save userID to session
 GET http://localhost:3000/api/init?ticket_number=999
+
+### Get user current active bookings (must have user in session)
+GET http://localhost:3000/api/bookings
+
+### Create a new booking for a user (must have user in session)
+PUT http://localhost:3000/api/book
+Content-Type: application/json
+
+{
+    "attraction_id": 1,
+    "number_of_places": 3,
+    "reservation_time": "2021-07-28T10:00:00.000Z"
+}

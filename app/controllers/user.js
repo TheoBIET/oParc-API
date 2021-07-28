@@ -1,9 +1,11 @@
-const { userDataMapper } = require('../dataMappers');
+const { 
+    userDataMapper,
+    eventDataMapper
+} = require('../dataMappers');
 
 module.exports = {
 
     initialization: async (req, res, next) => {
-
         const ticketNb = parseInt(req.query.ticket_number, 10);
 
         if (isNaN(ticketNb)) {
@@ -35,17 +37,32 @@ module.exports = {
     },
 
     getBookings: (req, res) => {
+
+        // TODO : GET ALL BOOKINGS FOR THIS USER
+
         res.send({
             message: 'Bookings retrieved',
             data: {}
         })
     },
 
-    book: (req, res) => {
+    book: async (req, res, next) => {
+        const attractionIsExists = await eventDataMapper.verifyIfExists(req.body.attraction_id);
+
+        if(!attractionIsExists) {
+            return next();
+        }
+
+        // TODO : ADD BOOKING TO DATABASE & CHECK IF VISITOR CAN BOOK AT THIS TIME
+
         res.send({
             message: 'Booking created',
-            data: {}
+            data: {
+                attraction_id: req.body.attraction_id,
+                ticket_number: req.session.user.tickets_number,
+                number_of_places: req.body.number_of_places,
+                reservation_time: "2021-07-28T10:00:00.000Z"
+            }
         })
     }
-
 }
