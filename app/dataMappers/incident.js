@@ -32,8 +32,8 @@ module.exports = {
         const now = new Date();
         console.log(now)
         const results = await client.query (
-            `INSERT INTO "incident" ("number", "type", "attraction_id", "created_at") VALUES ($1, $2, $3, $4);`
-            [data.number, data.type,data.attraction_id, now]
+            `INSERT INTO "incident" ("number", "type", "attraction_id", "created_at") VALUES ($1, $2, $3, now()) RETURNING *;`,
+            [data.number, data.type,data.attraction_id]
         );
         return results.rows[0]
     },
