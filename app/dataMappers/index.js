@@ -1,5 +1,6 @@
 module.exports = {
 
-    userDataMapper: require('./user')
+    userDataMapper: require('./user'),
+    eventDataMapper: require('./event'),
 
 }

@@ -1,9 +1,18 @@
+const { eventDataMapper } = require('../dataMappers');
+
 module.exports = {
 
-    getAll: (req, res) => {
+    getAll: async (req, res, next) => {
+
+        const events = await eventDataMapper.getAll();
+
+        if(events.length === 0) {
+            return next();
+        }
+
         res.send({
             message: 'All events fetched',
-            data: {}
+            data: events
         })
     }
 
