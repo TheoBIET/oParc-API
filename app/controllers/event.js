@@ -1,9 +1,7 @@
-const { eventDataMapper } = require('../dataMappers');
+const { eventDataMapper } = require("../dataMappers");
 
 module.exports = {
-
     getAll: async (req, res, next) => {
-
         const events = await eventDataMapper.getAll();
 
         // Sort event by open status
@@ -17,14 +15,13 @@ module.exports = {
             }
         });
 
-        if(events.length === 0) {
+        if (events.length === 0) {
             return next();
         }
 
         res.send({
-            message: 'All events fetched',
-            data: events
-        })
-    }
-
-}
+            message: "All events fetched",
+            data: events,
+        });
+    },
+};

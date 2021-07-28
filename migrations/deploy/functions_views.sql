@@ -11,12 +11,21 @@ SELECT
 "attraction"."duration",
 CASE 
   WHEN NOW()::TIME WITH TIME ZONE BETWEEN "attraction"."opening_hour" 
-  AND "attraction"."closing_hour" AND ((SELECT COUNT(*) FROM "incident" WHERE attraction_id="attraction"."id" AND "resolution_date" IS NULL) = 0)
+  AND "attraction"."closing_hour" AND ((SELECT COUNT(*) FROM "incident" WHERE "attraction_id"="attraction"."id" AND "resolution_date" IS NULL) = 0)
       THEN true
       ELSE false
   END 
 AS "opened"
 FROM "attraction";
+
+-- CASE -> Créer une nouvelle colonne
+---- WHEN -> Condition
+------ ! Je retourne une valeur du type que je souhaite parmis ceux proposés pas Postgres
+------ THEN -> Si la condition est vraie, alors...
+------ ELSE -> Sinon...
+---- END -> Mot-clé pour fermer la condition /!\ Obligatoire /!\
+-- AS "opened" -> Donner un alias à cette colonne
+
 
 CREATE OR REPLACE FUNCTION get_visitor_active_bookings(userID int) RETURNS table ("attraction" text, "ticket_no" int, "date" timestamptz) AS
 $$
@@ -28,7 +37,7 @@ BEGIN
     FROM "attraction_has_visitors"
     JOIN "attraction" ON "attraction"."id"="attraction_has_visitors"."attraction_id"
     JOIN "visitor" ON "visitor"."id"="attraction_has_visitors"."visitors_id"
-    WHERE "visitors_id"=userID 
+    WHERE "visitors_id"=userID
     AND "reservation_time" > now();
 END;
 $$ LANGUAGE 'plpgsql';
