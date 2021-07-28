@@ -36,13 +36,14 @@ module.exports = {
 
     },
 
-    getBookings: (req, res) => {
+    getBookings: async (req, res) => {
 
-        // TODO : GET ALL BOOKINGS FOR THIS USER
+        const userID = req.session.user.id;
+        const bookings = await userDataMapper.getBookings(userID);
 
         res.send({
             message: 'Bookings retrieved',
-            data: {}
+            data: bookings
         })
     },
 
@@ -53,10 +54,14 @@ module.exports = {
             return next();
         }
 
-        // TODO : ADD BOOKING TO DATABASE & CHECK IF VISITOR CAN BOOK AT THIS TIME
+        const data = req.body;
+        const userID = req.session.user.id;
+        const results = await userDataMapper.addBooking(userID, data);
+
+        console.log(results);
 
         res.send({
-            message: 'Booking created',
+            message: results.add_booking,
             data: {
                 attraction_id: req.body.attraction_id,
                 ticket_number: req.session.user.tickets_number,
