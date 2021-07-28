@@ -2,7 +2,7 @@ module.exports = {
 
     errorController: require('./error'),
     userController: require('./user'),
-    dashboardController: require('./dashboard'),
+    adminController: require('./admin'),
     eventController: require('./event'),
     incidentController: require('./incident')
 

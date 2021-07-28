@@ -13,7 +13,6 @@ module.exports = {
     },
 
     addBooking: async (userID, data) => {
-        console.log(data);
         const results = await client.query('SELECT add_booking($1, $2, $3, $4)', [data.attraction_id, userID, data.number_of_places, data.reservation_time]);
         return results.rows[0];
     }

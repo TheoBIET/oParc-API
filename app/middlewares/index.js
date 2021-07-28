@@ -1,5 +1,6 @@
 module.exports = {
 
-    userMiddleware: require('./user')
+    userMiddleware: require('./user'),
+    adminMiddleware: require('./admin')
 
 }

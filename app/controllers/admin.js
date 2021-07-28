@@ -1,7 +1,7 @@
 module.exports = {
     
     index: (req, res) => {
-        res.send('Page d\'accueil du dashboard');
+        res.redirect('/dashboard');
     }
 
 }
