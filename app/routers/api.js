@@ -7,10 +7,14 @@ const {
     eventController
 } = require('../controllers');
 
+const {
+    userMiddleware
+} = require('../middlewares');
+
 router
     .get('/init', userController.initialization)
-    .get('/bookings', userController.getBookings)
-    .put('/book', userController.book)
+    .get('/bookings', userMiddleware.verifyConnection, userController.getBookings)
+    .put('/book', userMiddleware.verifyConnection, userController.book)
     .get('/events', eventController.getAll)
     .use(errorController.resourceNotFound);
 

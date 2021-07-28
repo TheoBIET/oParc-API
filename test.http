@@ -1,0 +1,2 @@
+### Initialized & save userID to session
+GET http://localhost:3000/api/init?ticket_number=999
