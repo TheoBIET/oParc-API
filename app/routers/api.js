@@ -29,8 +29,14 @@ router
         incidentController.details
     )
 
+    .get(
+        "/incidents/:id(\\d+)",
+        adminMiddleware.checkPermission,
+        incidentController.getDetails
+    )
+
     .post(
-        "/incidents/:id",
+        "/incidents/:id(\\d+)",
         adminMiddleware.checkPermission,
         incidentController.updateDetails
     )

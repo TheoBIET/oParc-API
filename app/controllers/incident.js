@@ -1,25 +1,54 @@
+const { incidentDataMapper } = require("../dataMappers");
+
 module.exports = {
-    details: (req, res) => {
-        // TODO : GET DETAILS FOR ONE INCIDENT
-        let incidentID = req.incident;
+    details: async (req, res) => {
+        const incidents = await incidentDataMapper.getAll();
         res.send({
             message: `All incidents retrieved`,
-            data: {},
+            data: incidents,
         });
     },
 
-    updateDetails: (req, res) => {
-        // TODO : UPDATE DETAILS FOR ONE INCIDENT
-        let incidentID = req.params.id;
-        res.render({
-            message: `Informations updated for incident no ${incidentID}`,
-            data: {},
+    getDetails: async (req, res, next) => {
+        const incidentID = req.params.id;
+
+        const incident = await incidentDataMapper.findOne(incidentID);
+
+        if (!incident) {
+            return next();
+        }
+
+        res.send({
+            message: `Informations for incident no ${incidentID}`,
+            data: incident,
+        });
+    },
+
+    updateDetails: async (req, res, next) => {
+        const incidentID = req.params.id;
+
+        const incident = await incidentDataMapper.findOne(incidentID);
+
+        if (!incident) {
+            return next();
+        }
+
+        const newIncident = { ...incident, ...req.body };
+
+        const updatedIncident = await incidentDataMapper.update(
+            incidentID,
+            newIncident
+        );
+
+        res.send({
+            message: `Incident updated`,
+            data: updatedIncident,
         });
     },
 
     create: (req, res) => {
         // TODO : CREATE NEW INCIDENT
-        res.render({
+        res.send({
             message: `Incident created`,
             data: {},
         });
