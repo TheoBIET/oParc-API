@@ -1,14 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const {
-    errorController,
-    adminController
-} = require('../controllers');
-
+const { errorController, adminController } = require("../controllers");
 
 router
-    .get('/', adminController.index)
+    .get("/", adminController.index)
+    .post("/login", adminController.login)
     .use(errorController.resourceNotFound);
 
 module.exports = router;

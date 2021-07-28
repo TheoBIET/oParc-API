@@ -58,8 +58,6 @@ module.exports = {
         const userID = req.session.user.id;
         const results = await userDataMapper.addBooking(userID, data);
 
-        console.log(results);
-
         res.send({
             message: results.add_booking,
             data: {
