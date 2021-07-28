@@ -6,7 +6,7 @@ GET http://localhost:3000/api/bookings
 
 ### Create a new booking for a user (must have user in session)
 PUT http://localhost:3000/api/book
-Content-Type: application/json
+Content-Type: application/x-www-form-urlencoded
 
 {
     "attraction_id": 1,
