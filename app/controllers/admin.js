@@ -15,6 +15,11 @@ module.exports = {
             });
         }
         const data = await adminDataMapper.login(req.body);
+
+        if (data.data) {
+            req.session.agent = data.data;
+        }
+
         res.send(data);
     },
 };
