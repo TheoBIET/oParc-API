@@ -1,3 +1,5 @@
+const { userDataMapper } = require('../dataMappers');
+
 module.exports = {
 
     initialization: (req, res) => {
