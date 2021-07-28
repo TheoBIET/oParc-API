@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    errorController
+    errorController,
+    userController,
+    eventController
 } = require('../controllers');
 
 router
