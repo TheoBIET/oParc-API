@@ -2,3 +2,4 @@
 %project=oparc
 
 initialization 2021-07-27T10:15:25Z Théo BIET <dev.theobiet@gmail.com> # Database initialization
+functions_views 2021-07-28T08:52:51Z Théo BIET <dev.theobiet@gmail.com> # Addition of views and functions, to facilitate future queries
